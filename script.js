@@ -1,41 +1,32 @@
-const audio = document.getElementById('audio');
-const progressBar = document.getElementById('progress-bar');
-const currentTimeEl = document.getElementById('current-time');
-const durationEl = document.getElementById('duration');
+const audio = document.getElementById('music');
+const playBtn = document.getElementById('play-btn');
+const pauseBtn = document.getElementById('pause-btn');
+const repeatBtn = document.getElementById('repeat-btn');
+const status = document.getElementById('status');
 
-function playSong() {
+let repeatEnabled = true;
+
+playBtn.addEventListener('click', () => {
   audio.play();
-}
+  status.textContent = 'Playing...';
+});
 
-function pauseSong() {
+pauseBtn.addEventListener('click', () => {
   audio.pause();
-}
-
-function repeatSong() {
-  audio.currentTime = 0;
-  audio.play();
-}
-
-// Format time as mm:ss
-function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${minutes.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
-}
-
-// Update duration once metadata is loaded
-audio.addEventListener('loadedmetadata', () => {
-  durationEl.textContent = formatTime(audio.duration);
-  progressBar.max = Math.floor(audio.duration);
+  status.textContent = 'Paused.';
 });
 
-// Update progress bar and current time
-audio.addEventListener('timeupdate', () => {
-  progressBar.value = Math.floor(audio.currentTime);
-  currentTimeEl.textContent = formatTime(audio.currentTime);
+repeatBtn.addEventListener('click', () => {
+  repeatEnabled = !repeatEnabled;
+  status.textContent = repeatEnabled ? 'Repeat ON' : 'Repeat OFF';
 });
 
-// Seek when user drags progress bar
-progressBar.addEventListener('input', () => {
-  audio.currentTime = progressBar.value;
+audio.addEventListener('ended', () => {
+  if (repeatEnabled) {
+    audio.currentTime = 0;
+    audio.play();
+    status.textContent = 'Repeating...';
+  } else {
+    status.textContent = 'Playback finished.';
+  }
 });
