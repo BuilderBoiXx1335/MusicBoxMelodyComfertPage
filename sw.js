@@ -6,8 +6,8 @@ self.addEventListener('install', event => {
         '/index.html',
         '/style.css',
         '/script.js',
-        '/song.mp3',
-        '/album.jpg',
+        '/MusicBox.mp3',
+        '/album.png',
         '/manifest.json'
       ]);
     })
