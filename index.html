@@ -1,35 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Music Player</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#000000">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MusicBox Melody Comfort</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="background"></div>
-  <div class="player">
-    <img src="album.png" alt="Album Art" class="album-art">
-    <h1 id="song-title">MusicBoxMelody</h1>
-    <audio id="audio" src="MusicBox.mp3"></audio>
-    <div class="controls">
-      <button onclick="playSong()">▶ Play</button>
-      <button onclick="pauseSong()">⏸ Pause</button>
-      <button onclick="repeatSong()">🔁 Repeat</button>
-    </div>
-    <div class="progress">
-      <span id="current-time">00:00</span> /
-      <span id="duration">00:00</span>
-      <input type="range" id="progress-bar" value="0" min="0" step="1">
-    </div>
+  <div id="main-ui" class="fade-in">
+    <h1>MusicBox Melody</h1>
+    <button id="play-btn">Play</button>
+    <button id="pause-btn">Pause</button>
+    <button id="repeat-btn">Repeat</button>
+    <div id="status"></div>
   </div>
+
+  <audio id="music" src="MusicBox.mp3"></audio>
   <script src="script.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(() => console.log("✅ Service Worker registered"));
-    }
-  </script>
 </body>
 </html>
