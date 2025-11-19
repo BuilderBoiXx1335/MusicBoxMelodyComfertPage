@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Music Player</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+</head>
+<body>
+  <div class="background"></div>
+  <div class="player">
+    <img src="album.jpg" alt="Album Art" class="album-art">
+    <h1 id="song-title">Custom Song Name</h1>
+    <audio id="audio" src="song.mp3"></audio>
+    <div class="controls">
+      <button onclick="playSong()">▶ Play</button>
+      <button onclick="pauseSong()">⏸ Pause</button>
+      <button onclick="repeatSong()">🔁 Repeat</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log("Service Worker registered"));
+    }
+  </script>
+</body>
+</html>
