@@ -10,20 +10,25 @@
 <body>
   <div class="background"></div>
   <div class="player">
-    <img src="album.jpg" alt="Album Art" class="album-art">
-    <h1 id="song-title">Custom Song Name</h1>
-    <audio id="audio" src="song.mp3"></audio>
+    <img src="album.png" alt="Album Art" class="album-art">
+    <h1 id="song-title">MusicBoxMelody</h1>
+    <audio id="audio" src="MusicBox.mp3"></audio>
     <div class="controls">
       <button onclick="playSong()">▶ Play</button>
       <button onclick="pauseSong()">⏸ Pause</button>
       <button onclick="repeatSong()">🔁 Repeat</button>
+    </div>
+    <div class="progress">
+      <span id="current-time">00:00</span> /
+      <span id="duration">00:00</span>
+      <input type="range" id="progress-bar" value="0" min="0" step="1">
     </div>
   </div>
   <script src="script.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js')
-        .then(() => console.log("Service Worker registered"));
+        .then(() => console.log("✅ Service Worker registered"));
     }
   </script>
 </body>
